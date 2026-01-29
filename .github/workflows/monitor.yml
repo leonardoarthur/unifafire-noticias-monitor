@@ -1,0 +1,34 @@
+name: Monitor UniFAFIRE Notícias
+
+on:
+  schedule:
+    - cron: "0 * * * *"   # a cada hora
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Executar monitor
+        run: python monitor.py
+
+      - name: Commit do estado (se mudou)
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add last_state.txt
+          git commit -m "Atualização detectada nas notícias" || echo "Nada mudou"
+          git push
