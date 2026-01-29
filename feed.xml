@@ -1,1 +1,8 @@
-
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>UNIFAFIRE – Notícias e Avisos</title>
+    <link>https://unifafire.edu.br/todasasnoticias/</link>
+    <description>Feed automático de atualizações do site da UNIFAFIRE</description>
+  </channel>
+</rss>
